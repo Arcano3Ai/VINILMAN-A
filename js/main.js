@@ -83,16 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. MÚSICA DE FONDO (REPRODUCCIÓN AUTOMÁTICA EN 3 LOOPS AL INGRESAR) ---
-  const bgMusic = document.getElementById('bgMusic');
+  // --- 3. MÚSICA DE FONDO (3 LOOPS GARANTIZADOS AL INGRESAR) ---
+  const bgMusic = document.getElementById('bgMusic') || new Audio('assets/music/vinilmania_theme.mp3');
+  let loopCount = 0;
+  const MAX_LOOPS = 3;
+  let isAudioStarted = false;
 
   if (bgMusic) {
-    bgMusic.volume = 0.7;
-    bgMusic.loop = false; // Manejado por contador para cumplir exactamente 3 loops
-    let loopCount = 0;
-    const MAX_LOOPS = 3;
+    bgMusic.volume = 0.85;
 
-    // Al terminar cada vuelta, repetir hasta completar 3 loops
+    // Conteo y repetición exacta de 3 loops
     bgMusic.addEventListener('ended', () => {
       loopCount++;
       if (loopCount < MAX_LOOPS) {
@@ -103,52 +103,63 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Intentar reproducción automática inmediata al ingresar
-    const startIntroAudio = () => {
+    const triggerPlay = () => {
+      if (loopCount >= MAX_LOOPS) return;
       bgMusic.muted = false;
       const playPromise = bgMusic.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            removeAudioUnlockListeners();
+            isAudioStarted = true;
+            removeGestureListeners();
           })
           .catch(() => {
-            // Se activará con el primer toque o scroll del usuario
+            // El navegador bloquea audio con sonido antes del primer gesto.
+            // Precargamos en modo muted para tener el pipeline listo.
+            bgMusic.muted = true;
+            bgMusic.play().catch(() => {});
           });
       }
     };
 
-    startIntroAudio();
+    // 1. Ejecutar de inmediato al cargar
+    triggerPlay();
 
-    // Desbloqueo garantizado en el primer toque, scroll o tecla en móvil y escritorio
-    const onFirstUserGesture = () => {
-      if (bgMusic.paused && loopCount < MAX_LOOPS) {
-        startIntroAudio();
+    // 2. Desbloquear sonido en el primer micro-gesto del usuario
+    const onUserGesture = () => {
+      if (!isAudioStarted || bgMusic.paused || bgMusic.muted) {
+        bgMusic.muted = false;
+        if (bgMusic.currentTime > 5 && loopCount === 0) {
+          bgMusic.currentTime = 0;
+        }
+        triggerPlay();
       }
     };
 
-    const unlockEvents = [
+    const gestureEvents = [
+      'click',
       'touchstart',
       'touchend',
       'pointerdown',
       'pointerup',
       'mousedown',
-      'click',
+      'mouseup',
       'scroll',
       'wheel',
-      'keydown'
+      'keydown',
+      'mousemove'
     ];
 
-    function removeAudioUnlockListeners() {
-      unlockEvents.forEach(evt => {
-        window.removeEventListener(evt, onFirstUserGesture, true);
-        document.removeEventListener(evt, onFirstUserGesture, true);
+    function removeGestureListeners() {
+      gestureEvents.forEach(evt => {
+        window.removeEventListener(evt, onUserGesture, true);
+        document.removeEventListener(evt, onUserGesture, true);
       });
     }
 
-    unlockEvents.forEach(evt => {
-      window.addEventListener(evt, onFirstUserGesture, { passive: true, capture: true });
-      document.addEventListener(evt, onFirstUserGesture, { passive: true, capture: true });
+    gestureEvents.forEach(evt => {
+      window.addEventListener(evt, onUserGesture, { capture: true, passive: true });
+      document.addEventListener(evt, onUserGesture, { capture: true, passive: true });
     });
   }
 
