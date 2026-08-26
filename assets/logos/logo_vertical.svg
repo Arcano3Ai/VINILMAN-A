@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320">
+  <defs>
+    <linearGradient id="vertGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C3AED" />
+      <stop offset="50%" stop-color="#EC4899" />
+      <stop offset="100%" stop-color="#FACC15" />
+    </linearGradient>
+    <filter id="vertDrop" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="5" dy="5" stdDeviation="0" flood-color="#111111" />
+    </filter>
+  </defs>
+
+  <!-- ISOTIPO CENTRAL -->
+  <g transform="translate(100, 20)">
+    <rect x="0" y="0" width="120" height="120" rx="28" fill="#FFFFFF" stroke="#111111" stroke-width="4.5" filter="url(#vertDrop)" />
+    <rect x="7" y="7" width="106" height="106" rx="22" fill="url(#vertGrad)" />
+    <path d="M 36 30 L 60 84 L 84 30 L 71 30 L 60 58 L 49 30 Z" fill="#FFFFFF" stroke="#111111" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="60,16 63.5,23 71,25 63.5,29 60,36 56.5,29 49,25 56.5,23" fill="#FACC15" stroke="#111111" stroke-width="1.5" />
+  </g>
+
+  <!-- TYPOGRAPHY VERTICAL -->
+  <g transform="translate(160, 195)">
+    <text x="0" y="0" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="38" font-weight="900" letter-spacing="-1" fill="#111111" text-anchor="middle">
+      VINIL<tspan fill="#EC4899">MANÍA</tspan>
+    </text>
+    
+    <!-- Stars around text -->
+    <polygon points="120,-30 123,-24 130,-22 123,-19 120,-13 117,-19 110,-22 117,-24" fill="#FACC15" stroke="#111111" stroke-width="1.2" />
+    <polygon points="-120,-10 -117,-4 -110,-2 -117,1 -120,7 -123,1 -130,-2 -123,-4" fill="#7C3AED" />
+
+    <!-- Slogan Subtitle -->
+    <g transform="translate(0, 32)">
+      <rect x="-140" y="-12" width="280" height="26" rx="13" fill="#111111" />
+      <text x="0" y="5" font-family="'Poppins', sans-serif" font-size="10.5" font-weight="700" letter-spacing="2" fill="#FFFFFF" text-anchor="middle">
+        TU IDEA • TU ESTILO • TU MANÍA
+      </text>
+    </g>
+  </g>
+</svg>

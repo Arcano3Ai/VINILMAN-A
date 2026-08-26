@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="540" height="120">
+  <!-- Monocromático Blanco para corte de vinil sobre fondos oscuros o prendas negras -->
+  <g transform="translate(10, 10)">
+    <rect x="0" y="0" width="100" height="100" rx="22" fill="#FFFFFF" />
+    <path d="M 28 24 L 50 72 L 72 24 L 60 24 L 50 50 L 40 24 Z" fill="#000000" />
+    <polygon points="50,11 53.5,17.5 60,19 53.5,22.5 50,29 46.5,22.5 40,19 46.5,17.5" fill="#000000" />
+    <line x1="18" y1="86" x2="82" y2="86" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-dasharray="4,4" />
+  </g>
+
+  <g transform="translate(125, 12)">
+    <text x="0" y="60" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="52" font-weight="900" letter-spacing="-1" fill="#FFFFFF">
+      VINILMANÍA
+    </text>
+    <polygon points="275,20 279,28 288,30 279,34 275,43 271,34 262,30 271,28" fill="#FFFFFF" />
+
+    <g transform="translate(0, 74)">
+      <rect x="0" y="0" width="370" height="24" rx="12" fill="#FFFFFF" />
+      <text x="18" y="16" font-family="'Poppins', sans-serif" font-size="11.5" font-weight="700" letter-spacing="2" fill="#000000" text-transform="uppercase">
+        TU IDEA • TU ESTILO • TU MANÍA
+      </text>
+    </g>
+  </g>
+</svg>

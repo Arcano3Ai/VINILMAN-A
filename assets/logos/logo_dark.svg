@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="540" height="120">
+  <defs>
+    <linearGradient id="neonGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="50%" stop-color="#EC4899" />
+      <stop offset="100%" stop-color="#FACC15" />
+    </linearGradient>
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#EC4899" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- ISOTIPO BADGE (Dark Neon) -->
+  <g transform="translate(10, 10)">
+    <rect x="0" y="0" width="100" height="100" rx="24" fill="#181820" stroke="#FFFFFF" stroke-width="3.5" />
+    <rect x="6" y="6" width="88" height="88" rx="18" fill="url(#neonGradDark)" />
+    
+    <!-- Plotter Blade / Stylized V -->
+    <path d="M 28 24 L 50 72 L 72 24 L 60 24 L 50 50 L 40 24 Z" fill="#FFFFFF" stroke="#111111" stroke-width="3" stroke-linejoin="round" />
+    
+    <!-- Sparkles -->
+    <polygon points="50,11 53.5,17.5 60,19 53.5,22.5 50,29 46.5,22.5 40,19 46.5,17.5" fill="#FACC15" />
+    <polygon points="76,68 78,72 82,74 78,76 76,80 74,76 70,74 74,72" fill="#FFFFFF" />
+    <polygon points="22,68 23.5,71 26.5,72.5 23.5,74 22,77 20.5,74 17.5,72.5 20.5,71" fill="#FACC15" />
+  </g>
+
+  <!-- TYPOGRAPHY (White & Neon Pink for Dark backgrounds) -->
+  <g transform="translate(125, 12)">
+    <text x="0" y="60" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="52" font-weight="900" letter-spacing="-1" fill="#FFFFFF">
+      VINIL<tspan fill="#EC4899" filter="url(#neonGlow)">MANÍA</tspan>
+    </text>
+
+    <!-- Star Accent -->
+    <polygon points="275,20 279,28 288,30 279,34 275,43 271,34 262,30 271,28" fill="#FACC15" />
+
+    <!-- Slogan Subtitle with Neon Yellow Accent -->
+    <g transform="translate(0, 74)">
+      <rect x="0" y="0" width="370" height="24" rx="12" fill="#242430" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+      <text x="18" y="16" font-family="'Poppins', sans-serif" font-size="11.5" font-weight="700" letter-spacing="2" fill="#FACC15" text-transform="uppercase">
+        TU IDEA • TU ESTILO • TU MANÍA
+      </text>
+      <circle cx="355" cy="12" r="4" fill="#EC4899" />
+    </g>
+  </g>
+</svg>
