@@ -60,7 +60,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 2. SERVICIOS: BOTONES DE COTIZACIÓN DINÁMICOS ---
+  // --- 2. VIDEO SHOWCASE CONTROLS ---
+  const mainVinilVideo = document.getElementById('mainVinilVideo');
+  const videoSoundToggleBtn = document.getElementById('videoSoundToggleBtn');
+  const soundIcon = document.getElementById('soundIcon');
+  const soundText = document.getElementById('soundText');
+
+  if (videoSoundToggleBtn && mainVinilVideo) {
+    videoSoundToggleBtn.addEventListener('click', () => {
+      mainVinilVideo.muted = !mainVinilVideo.muted;
+      if (mainVinilVideo.muted) {
+        if (soundIcon) soundIcon.textContent = '🔇';
+        if (soundText) soundText.textContent = 'Activar Audio';
+      } else {
+        if (soundIcon) soundIcon.textContent = '🔊';
+        if (soundText) soundText.textContent = 'Silenciar';
+      }
+    });
+  }
+
+  // --- 3. SERVICIOS: BOTONES DE COTIZACIÓN DINÁMICOS ---
   const serviceQuoteBtns = document.querySelectorAll('.service-quote-btn');
   serviceQuoteBtns.forEach(btn => {
     const serviceName = btn.getAttribute('data-service-name') || 'Personalización en Vinil';

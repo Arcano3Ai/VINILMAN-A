@@ -75,22 +75,13 @@
       
       <!-- Brand Logo con Estética Sticker -->
       <a href="#inicio" class="brand-logo" aria-label="VINILMANÍA - Inicio">
-        <div class="brand-badge">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <path d="m9 15 2 2 4-4"/>
-          </svg>
-        </div>
-        <div class="brand-text">
-          VINIL<span>MANÍA</span>
-          <span class="brand-slogan-nav">Tu idea. Tu estilo. Tu manía.</span>
-        </div>
+        <img src="assets/logos/logoprincipal.png" alt="VINILMANÍA - Tu idea. Tu estilo. Tu manía." class="brand-img-logo">
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="nav-links" aria-label="Navegación principal">
         <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#video" class="nav-link">En Acción</a>
         <a href="#servicios" class="nav-link">Servicios</a>
         <a href="#personalizacion" class="nav-link">Personalización</a>
         <a href="#galeria" class="nav-link">Galería</a>
@@ -123,6 +114,7 @@
   <div class="mobile-menu-overlay" id="mobileMenu">
     <nav class="mobile-nav-links">
       <a href="#inicio">Inicio</a>
+      <a href="#video">En Acción</a>
       <a href="#servicios">Servicios</a>
       <a href="#personalizacion">Personalización</a>
       <a href="#galeria">Galería</a>
@@ -245,6 +237,52 @@
               <h4>Cotizaciones rápidas</h4>
               <p>Presupuestos claros y sin complicaciones en minutos.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECCIÓN DE VIDEO SHOWCASE (GRANDE & CINEMÁTICO)
+         ========================================================================== -->
+    <section class="section-padding video-showcase-section" id="video">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag" style="background:#16161E; color:var(--accent-yellow); border-color:rgba(255,255,255,0.2);">
+            🎬 EN ACCIÓN • CALIDAD PRO
+          </div>
+          <h2 class="section-title" style="color:#FFFFFF;">MIRA EL CORTE EN ACCIÓN</h2>
+          <p class="section-subtitle" style="color:#94A3B8;">
+            De la pantalla a tus manos: precisión milimétrica, depilado perfecto y acabados de nivel profesional en cada proyecto.
+          </p>
+        </div>
+
+        <div class="video-theater-wrapper">
+          <div class="video-stickers-wrap">
+            <div class="video-sticker-top">⚡ CORTE MILIMÉTRICO</div>
+            <div class="video-sticker-bottom">✨ 100% VINIL PROFESIONAL</div>
+
+            <div class="video-player-frame">
+              <video id="mainVinilVideo" autoplay loop muted playsinline controls preload="metadata">
+                <source src="assets/videos/videovinil.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video HTML5.
+              </video>
+              
+              <div class="video-controls-overlay">
+                <button type="button" class="video-sound-toggle-btn" id="videoSoundToggleBtn" aria-label="Activar/Desactivar sonido">
+                  <span id="soundIcon">🔇</span> <span id="soundText">Activar Audio</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="video-cta-bottom">
+            <a href="#contacto" class="btn btn-whatsapp btn-lg" data-wa-default>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.181-.076.355.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.392-12.416c-5.523 0-10 4.477-10 10 0 1.768.462 3.429 1.267 4.871l-1.306 4.773 4.908-1.287c1.396.757 2.986 1.192 4.679 1.192 5.522 0 10-4.477 10-10s-4.478-10-10-10z"/>
+              </svg>
+              COTIZAR MI IDEA EN VINIL
+            </a>
           </div>
         </div>
       </div>
@@ -1094,17 +1132,8 @@
         
         <!-- Columna 1: Brand -->
         <div class="footer-col footer-brand">
-          <div class="brand-logo">
-            <div class="brand-badge">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <path d="m9 15 2 2 4-4"/>
-              </svg>
-            </div>
-            <div class="brand-text">
-              VINIL<span style="color:var(--primary-pink);">MANÍA</span>
-            </div>
+          <div class="brand-logo" style="margin-bottom:1rem;">
+            <img src="assets/logos/logoprincipal.png" alt="VINILMANÍA - Tu idea. Tu estilo. Tu manía." class="brand-img-logo">
           </div>
           <p>“Tu idea. Tu estilo. Tu manía.”</p>
           <p style="font-size:0.85rem; color:#64748B;">

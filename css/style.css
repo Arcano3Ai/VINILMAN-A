@@ -303,51 +303,147 @@ h1, h2, h3, h4, h5, h6 {
   height: 82px;
 }
 
-/* Logo Estilo Sticker */
+/* Logo Estilo Sticker & Imagen */
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-heading);
-  font-size: 1.45rem;
-  font-weight: 900;
-  color: var(--dark-black);
+  gap: 0.75rem;
   text-decoration: none;
-  letter-spacing: -0.03em;
   user-select: none;
-}
-
-.brand-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: var(--grad-primary);
-  border: var(--border-sticker);
-  border-radius: 12px;
-  box-shadow: 3px 3px 0px #111111;
-  transform: rotate(-4deg);
   transition: var(--transition-bounce);
 }
 
-.brand-logo:hover .brand-badge {
-  transform: rotate(6deg) scale(1.1);
-  box-shadow: 4px 4px 0px #EC4899;
+.brand-img-logo {
+  height: 52px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  transition: var(--transition-bounce);
+  filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.15));
 }
 
-.brand-logo .brand-text {
+.brand-logo:hover .brand-img-logo {
+  transform: scale(1.05) rotate(-1deg);
+  filter: drop-shadow(4px 4px 0px #EC4899);
+}
+
+.footer-brand .brand-img-logo {
+  height: 60px;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+}
+
+/* --- SECCIÓN DE VIDEO SHOWCASE (GRANDE & CINEMÁTICO) --- */
+.video-showcase-section {
+  background: #0B0B0E;
+  color: var(--pure-white);
+  position: relative;
+  overflow: hidden;
+  padding: 5.5rem 0;
+}
+
+.video-theater-wrapper {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.video-player-frame {
+  position: relative;
+  background: #16161E;
+  border: 4px solid #111111;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sticker-lg), 0 0 45px rgba(124, 58, 237, 0.45);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.video-player-frame video {
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+  object-fit: cover;
+  display: block;
+  border-radius: calc(var(--radius-xl) - 4px);
+}
+
+/* Controles y Overlays del Video */
+.video-controls-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.video-sound-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+.video-sound-toggle-btn:hover {
+  background: var(--primary-purple);
+  border-color: #FFFFFF;
+  transform: scale(1.05);
+}
+
+.video-stickers-wrap {
   position: relative;
 }
 
-.brand-logo .brand-text span {
-  color: var(--primary-pink);
+.video-sticker-top {
+  position: absolute;
+  top: -18px;
+  left: 28px;
+  background: var(--accent-yellow);
+  color: #111111;
+  border: var(--border-sticker);
+  border-radius: 12px;
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 900;
+  box-shadow: var(--shadow-sticker);
+  z-index: 5;
+  transform: rotate(-4deg);
+  animation: floatAnim 4s ease-in-out infinite;
 }
 
-.brand-logo .brand-slogan-nav {
-  display: block;
-  font-size: 0.62rem;
-  font-family: var(--font-body);
+.video-sticker-bottom {
+  position: absolute;
+  bottom: -18px;
+  left: 35px;
+  background: var(--primary-pink);
+  color: #FFFFFF;
+  border: var(--border-sticker);
+  border-radius: 12px;
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 900;
+  box-shadow: var(--shadow-sticker);
+  z-index: 5;
+  transform: rotate(4deg);
+  animation: floatAnim 4.5s ease-in-out infinite reverse;
+}
+
+.video-cta-bottom {
+  margin-top: 3rem;
+  text-align: center;
+}
   font-weight: 600;
   color: var(--text-muted);
   letter-spacing: 0.08em;
