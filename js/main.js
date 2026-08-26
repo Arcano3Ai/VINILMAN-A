@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- CONFIGURACIÓN PRINCIPAL ---
   const CONFIG = {
-    // Número oficial de WhatsApp en formato internacional (México +52)
-    WHATSAPP_PHONE: '5215512345678', // Configurable
-    DEFAULT_MSG: 'Hola VINILMANÍA 👋 Quiero solicitar una cotización.'
+    WHATSAPP_PHONE: '528123785429', // Teléfono oficial VINILMANÍA (+52 8123785429)
+    EMAIL: 'aneltamez@vinilmania.com', // Correo oficial
+    DEFAULT_MSG: 'Hola VINILMANÍA 👋 Quiero cotizar un proyecto personalizado. ¿Me podrían dar información?'
   };
 
   /**
