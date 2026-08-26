@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. REPRODUCTOR DE MÚSICA OFICIAL (AUTOPLAY LOOP + CONTROLES) ---
+  // --- 3. REPRODUCTOR DE MÚSICA OFICIAL (AUTOPLAY MOBILE-OPTIMIZED) ---
   const bgMusic = document.getElementById('bgMusic');
   const musicToggleBtn = document.getElementById('musicToggleBtn');
   const musicVinylDisc = document.getElementById('musicVinylDisc');
@@ -94,62 +94,76 @@ document.addEventListener('DOMContentLoaded', () => {
       musicVinylDisc?.classList.add('playing');
       if (musicStatusText) musicStatusText.textContent = 'Reproduciendo 🎵';
       if (musicActionIcon) musicActionIcon.textContent = '⏸️';
+      musicToggleBtn?.classList.remove('pulse-attention');
     } else {
       musicVinylDisc?.classList.remove('playing');
-      if (musicStatusText) musicStatusText.textContent = 'Pausado ⏸️';
+      if (musicStatusText) musicStatusText.textContent = 'Activar Música ▶️';
       if (musicActionIcon) musicActionIcon.textContent = '▶️';
+      musicToggleBtn?.classList.add('pulse-attention');
     }
   }
 
   if (bgMusic) {
-    bgMusic.volume = 0.65;
+    bgMusic.volume = 0.7;
     bgMusic.loop = true;
 
-    // Intentar reproducción automática inmediata
-    const tryPlayAudio = () => {
+    // Intentar reproducción directa
+    const executePlay = () => {
+      bgMusic.muted = false;
       const playPromise = bgMusic.play();
       if (playPromise !== undefined) {
-        playPromise.then(() => {
-          updateMusicUI(true);
-          cleanupUnlockListeners();
-        }).catch(() => {
-          // Bloqueado por política del navegador; esperando primer micro-evento
-          updateMusicUI(false);
-        });
+        playPromise
+          .then(() => {
+            updateMusicUI(true);
+            removeMobileUnlockListeners();
+          })
+          .catch(() => {
+            // Esperando primer toque en móvil
+            updateMusicUI(false);
+          });
       }
     };
 
-    tryPlayAudio();
+    // Intentar al cargar
+    executePlay();
 
-    // Desbloqueo ultra rápido ante cualquier primer micro-evento del usuario
-    const unlockEvents = ['click', 'pointerdown', 'mousedown', 'touchstart', 'scroll', 'wheel', 'keydown', 'mousemove'];
-    
-    const handleFirstInteraction = () => {
+    // Desbloqueo garantizado para móviles (iOS Safari / Android Chrome)
+    // Se ejecuta en el primer toque de pantalla o scroll
+    const onMobileFirstInteraction = () => {
       if (bgMusic.paused) {
-        tryPlayAudio();
+        executePlay();
       }
     };
 
-    function cleanupUnlockListeners() {
+    const unlockEvents = [
+      'touchstart',
+      'touchend',
+      'pointerdown',
+      'pointerup',
+      'mousedown',
+      'click',
+      'scroll',
+      'keydown'
+    ];
+
+    function removeMobileUnlockListeners() {
       unlockEvents.forEach(evt => {
-        window.removeEventListener(evt, handleFirstInteraction);
-        document.removeEventListener(evt, handleFirstInteraction);
+        window.removeEventListener(evt, onMobileFirstInteraction, true);
+        document.removeEventListener(evt, onMobileFirstInteraction, true);
       });
     }
 
     unlockEvents.forEach(evt => {
-      window.addEventListener(evt, handleFirstInteraction, { passive: true, once: true });
-      document.addEventListener(evt, handleFirstInteraction, { passive: true, once: true });
+      window.addEventListener(evt, onMobileFirstInteraction, { passive: true, capture: true });
+      document.addEventListener(evt, onMobileFirstInteraction, { passive: true, capture: true });
     });
 
-    // Control manual con el botón flotante
+    // Control manual por el botón
     if (musicToggleBtn) {
       musicToggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (bgMusic.paused) {
-          bgMusic.play().then(() => {
-            updateMusicUI(true);
-          }).catch(err => console.log('Error reproduciendo audio:', err));
+          executePlay();
         } else {
           bgMusic.pause();
           updateMusicUI(false);

@@ -2220,6 +2220,22 @@ select.form-control option {
   100% { height: 14px; }
 }
 
+.music-toggle-btn.pulse-attention {
+  animation: musicAttentionPulse 2s infinite ease-in-out;
+  border-color: var(--primary-pink);
+}
+
+@keyframes musicAttentionPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 4px 4px 0px #000000, 0 0 15px rgba(236, 72, 153, 0.4);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 6px 6px 0px #000000, 0 0 30px rgba(236, 72, 153, 0.85);
+  }
+}
+
 /* Ajustes en Móvil para no chocar con WhatsApp */
 @media (max-width: 768px) {
   .music-floating-widget {
