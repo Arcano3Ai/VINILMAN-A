@@ -8,7 +8,8 @@ Estructura organizada para almacenar todos los recursos multimedia, logotipos, v
 
 ```plaintext
 assets/
-├── logos/          # Logotipos oficiales en formato vectorial SVG (horizontal, vertical, dark, monocromáticos, isotipos).
+├── logos/          # Logotipos oficiales en formato vectorial SVG y PNG (horizontal, vertical, dark, monocromáticos, isotipos).
+├── audio/          # Canciones oficiales, jingles de marca, audios promocionales y pistas de fondo (.mp3, .wav, .ogg).
 ├── videos/         # Videos promocionales, reels de procesos de corte, loops de fondo para hero y clips de unboxing.
 ├── images/         # Fotografías de producto en alta resolución, mockups, banners y sesiones de estudio.
 ├── icons/          # Iconografía personalizada, badges en SVG, stickers gráficos y recursos UI.
@@ -16,6 +17,12 @@ assets/
 ├── docs/           # Catálogos en PDF, listas de precios, plantillas de corte y guías.
 └── favicon.svg     # Favicon oficial del sitio web.
 ```
+
+---
+
+## 🎵 Recomendaciones para Canciones y Audio (`assets/audio/`)
+- **Formatos sugeridos**: `.mp3` (128 kbps o 192 kbps para carga instantánea en web) o `.ogg` / `.wav`.
+- **Usos recomendados**: Canción temática de VINILMANÍA, jingles para videos de TikTok/Reels, o reproductor de música de fondo.
 
 ---
 
