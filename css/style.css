@@ -302,7 +302,9 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   height: 94px;
   flex-wrap: nowrap;
-  gap: 1rem;
+  gap: 1.25rem;
+  max-width: 1440px;
+  width: 100%;
 }
 
 /* Logo Estilo Sticker & Imagen */
@@ -317,9 +319,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-img-logo {
-  height: 70px;
+  height: 60px;
   width: auto;
-  max-width: 240px;
+  max-width: 200px;
   object-fit: contain;
   transition: var(--transition-bounce);
   filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.12));
@@ -494,8 +496,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-cta .btn-whatsapp {
-  padding: 0.8rem 1.45rem;
-  font-size: 0.86rem;
+  padding: 0.65rem 1.15rem;
+  font-size: 0.8rem;
   white-space: nowrap;
 }
 
