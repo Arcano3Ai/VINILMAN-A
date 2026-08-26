@@ -1239,6 +1239,39 @@
     </a>
   </div>
 
+  <!-- ==========================================================================
+       REPRODUCTOR DE MÚSICA OFICIAL (VINILMANÍA SOUNDTRACK)
+       ========================================================================== -->
+  <div class="music-floating-widget" id="musicWidget">
+    <button type="button" class="music-toggle-btn" id="musicToggleBtn" aria-label="Control de Música">
+      <div class="music-disc-wrap">
+        <div class="music-vinyl-disc" id="musicVinylDisc">
+          <div class="music-vinyl-grooves"></div>
+          <div class="music-vinyl-center"></div>
+        </div>
+        <div class="music-equalizer" id="musicEqualizer">
+          <span class="eq-bar bar-1"></span>
+          <span class="eq-bar bar-2"></span>
+          <span class="eq-bar bar-3"></span>
+          <span class="eq-bar bar-4"></span>
+        </div>
+      </div>
+      <div class="music-info-text">
+        <span class="music-label">VINILMANÍA SOUND</span>
+        <span class="music-status" id="musicStatusText">Reproduciendo 🎵</span>
+      </div>
+      <div class="music-action-icon" id="musicActionIcon">
+        ⏸️
+      </div>
+    </button>
+    <audio id="bgMusic" loop preload="auto">
+      <source src="assets/music/vinilmania_theme.wav" type="audio/wav">
+      <source src="assets/music/Vinilman%C3%ADa.wav" type="audio/wav">
+      <source src="assets/audio/vinilmania_theme.wav" type="audio/wav">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
+
   <!-- Scripts -->
   <script src="js/main.js" defer></script>
 </body>

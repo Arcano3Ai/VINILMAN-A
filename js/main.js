@@ -79,7 +79,77 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. SERVICIOS: BOTONES DE COTIZACIÓN DINÁMICOS ---
+  // --- 3. REPRODUCTOR DE MÚSICA OFICIAL (AUTOPLAY LOOP + CONTROLES) ---
+  const bgMusic = document.getElementById('bgMusic');
+  const musicToggleBtn = document.getElementById('musicToggleBtn');
+  const musicVinylDisc = document.getElementById('musicVinylDisc');
+  const musicStatusText = document.getElementById('musicStatusText');
+  const musicActionIcon = document.getElementById('musicActionIcon');
+
+  let isMusicPlaying = false;
+
+  function updateMusicUI(playing) {
+    isMusicPlaying = playing;
+    if (playing) {
+      musicVinylDisc?.classList.add('playing');
+      if (musicStatusText) musicStatusText.textContent = 'Reproduciendo 🎵';
+      if (musicActionIcon) musicActionIcon.textContent = '⏸️';
+    } else {
+      musicVinylDisc?.classList.remove('playing');
+      if (musicStatusText) musicStatusText.textContent = 'Pausado ⏸️';
+      if (musicActionIcon) musicActionIcon.textContent = '▶️';
+    }
+  }
+
+  if (bgMusic) {
+    bgMusic.volume = 0.65;
+    bgMusic.loop = true;
+
+    // Intentar reproducción automática
+    const startAudio = () => {
+      bgMusic.play().then(() => {
+        updateMusicUI(true);
+      }).catch(() => {
+        // Bloqueado por política del navegador; se activará con la primera interacción
+        updateMusicUI(false);
+      });
+    };
+
+    startAudio();
+
+    // Desbloqueo suave en la primera interacción si el navegador lo bloqueó inicialmente
+    const unlockAudioOnInteraction = () => {
+      if (!isMusicPlaying && bgMusic.paused) {
+        bgMusic.play().then(() => {
+          updateMusicUI(true);
+        }).catch(() => {});
+      }
+      document.removeEventListener('click', unlockAudioOnInteraction);
+      document.removeEventListener('touchstart', unlockAudioOnInteraction);
+      document.removeEventListener('scroll', unlockAudioOnInteraction);
+    };
+
+    document.addEventListener('click', unlockAudioOnInteraction, { once: true });
+    document.addEventListener('touchstart', unlockAudioOnInteraction, { once: true });
+    document.addEventListener('scroll', unlockAudioOnInteraction, { once: true });
+
+    // Control manual con el botón flotante
+    if (musicToggleBtn) {
+      musicToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (bgMusic.paused) {
+          bgMusic.play().then(() => {
+            updateMusicUI(true);
+          }).catch(err => console.log('Error reproduciendo audio:', err));
+        } else {
+          bgMusic.pause();
+          updateMusicUI(false);
+        }
+      });
+    }
+  }
+
+  // --- 4. SERVICIOS: BOTONES DE COTIZACIÓN DINÁMICOS ---
   const serviceQuoteBtns = document.querySelectorAll('.service-quote-btn');
   serviceQuoteBtns.forEach(btn => {
     const serviceName = btn.getAttribute('data-service-name') || 'Personalización en Vinil';
