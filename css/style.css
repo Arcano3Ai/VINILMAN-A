@@ -282,7 +282,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 2px solid rgba(0, 0, 0, 0.08);
@@ -293,176 +293,82 @@ h1, h2, h3, h4, h5, h6 {
 .header.scrolled {
   background: rgba(255, 255, 255, 0.98);
   border-bottom: 3px solid #111111;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 82px;
+  height: 94px;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
 }
 
 /* Logo Estilo Sticker & Imagen */
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
   text-decoration: none;
   user-select: none;
+  flex-shrink: 0;
   transition: var(--transition-bounce);
 }
 
 .brand-img-logo {
-  height: 52px;
+  height: 72px;
   width: auto;
-  max-width: 220px;
+  max-width: 260px;
   object-fit: contain;
   transition: var(--transition-bounce);
-  filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.15));
+  filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.12));
 }
 
 .brand-logo:hover .brand-img-logo {
-  transform: scale(1.05) rotate(-1deg);
+  transform: scale(1.06) rotate(-1deg);
   filter: drop-shadow(4px 4px 0px #EC4899);
 }
 
 .footer-brand .brand-img-logo {
-  height: 60px;
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+  height: 80px;
+  max-width: 280px;
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.25));
 }
 
-/* --- SECCIÓN DE VIDEO SHOWCASE (GRANDE & CINEMÁTICO) --- */
-.video-showcase-section {
-  background: #0B0B0E;
-  color: var(--pure-white);
-  position: relative;
-  overflow: hidden;
-  padding: 5.5rem 0;
+/* Hero Brand Logo Emblem */
+.hero-brand-badge-wrap {
+  margin-bottom: 1.5rem;
+  display: inline-block;
 }
 
-.video-theater-wrapper {
-  position: relative;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.video-player-frame {
-  position: relative;
-  background: #16161E;
-  border: 4px solid #111111;
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sticker-lg), 0 0 45px rgba(124, 58, 237, 0.45);
-  overflow: hidden;
-  line-height: 0;
-}
-
-.video-player-frame video {
-  width: 100%;
-  height: auto;
-  max-height: 620px;
-  object-fit: cover;
-  display: block;
-  border-radius: calc(var(--radius-xl) - 4px);
-}
-
-/* Controles y Overlays del Video */
-.video-controls-overlay {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  z-index: 10;
-}
-
-.video-sound-toggle-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1rem;
-  background: rgba(17, 17, 17, 0.85);
-  backdrop-filter: blur(8px);
-  color: #FFFFFF;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-radius: var(--radius-full);
-  font-family: var(--font-heading);
-  font-size: 0.8rem;
-  font-weight: 800;
-  cursor: pointer;
+.hero-brand-logo-img {
+  height: 100px;
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(124, 58, 237, 0.55)) drop-shadow(4px 4px 0px #000000);
   transition: var(--transition-bounce);
 }
 
-.video-sound-toggle-btn:hover {
-  background: var(--primary-purple);
-  border-color: #FFFFFF;
-  transform: scale(1.05);
-}
-
-.video-stickers-wrap {
-  position: relative;
-}
-
-.video-sticker-top {
-  position: absolute;
-  top: -18px;
-  left: 28px;
-  background: var(--accent-yellow);
-  color: #111111;
-  border: var(--border-sticker);
-  border-radius: 12px;
-  padding: 0.5rem 1.1rem;
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 900;
-  box-shadow: var(--shadow-sticker);
-  z-index: 5;
-  transform: rotate(-4deg);
-  animation: floatAnim 4s ease-in-out infinite;
-}
-
-.video-sticker-bottom {
-  position: absolute;
-  bottom: -18px;
-  left: 35px;
-  background: var(--primary-pink);
-  color: #FFFFFF;
-  border: var(--border-sticker);
-  border-radius: 12px;
-  padding: 0.5rem 1.1rem;
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 900;
-  box-shadow: var(--shadow-sticker);
-  z-index: 5;
-  transform: rotate(4deg);
-  animation: floatAnim 4.5s ease-in-out infinite reverse;
-}
-
-.video-cta-bottom {
-  margin-top: 3rem;
-  text-align: center;
-}
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.hero-brand-logo-img:hover {
+  transform: scale(1.05) rotate(2deg);
 }
 
 /* Enlaces de Navegación */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 1.25rem;
+  flex-shrink: 0;
 }
 
 .nav-link {
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-dark);
   position: relative;
   padding: 0.3rem 0;
+  white-space: nowrap;
   transition: var(--transition-fast);
 }
 
@@ -489,6 +395,13 @@ h1, h2, h3, h4, h5, h6 {
 .nav-cta {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.nav-cta .btn-whatsapp {
+  padding: 0.8rem 1.45rem;
+  font-size: 0.86rem;
+  white-space: nowrap;
 }
 
 /* Botón Hamburguesa Móvil */
@@ -497,19 +410,20 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   background: #FFFFFF;
   border: var(--border-sticker);
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 3px 3px 0px #111111;
   gap: 5px;
   z-index: 1100;
+  flex-shrink: 0;
 }
 
 .menu-toggle span {
   display: block;
-  width: 22px;
+  width: 24px;
   height: 3px;
   background: #111111;
   border-radius: 3px;
@@ -1990,11 +1904,53 @@ select.form-control option {
   }
 }
 
-@media (max-width: 768px) {
-  .section-padding {
-    padding: 4rem 0;
-  }
+/* Menú Móvil Desplegable (Globalmente oculto en pantalla) */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 14, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
 
+.mobile-menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  margin-bottom: 2.5rem;
+}
+
+.mobile-nav-links a {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  transition: var(--transition-fast);
+}
+
+.mobile-nav-links a:hover {
+  color: var(--accent-yellow);
+}
+
+@media (max-width: 1180px) {
   .nav-links,
   .nav-cta {
     display: none;
@@ -2003,48 +1959,20 @@ select.form-control option {
   .menu-toggle {
     display: flex;
   }
+}
 
-  /* Menú Móvil Desplegable */
-  .mobile-menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(10, 10, 14, 0.98);
-    backdrop-filter: blur(16px);
-    z-index: 1050;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: var(--transition-normal);
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 4rem 0;
   }
 
-  .mobile-menu-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
+  .brand-img-logo {
+    height: 58px;
+    max-width: 200px;
   }
 
-  .mobile-nav-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.4rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .mobile-nav-links a {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    transition: var(--transition-fast);
-  }
-
-  .mobile-nav-links a:hover {
-    color: var(--accent-yellow);
+  .hero-brand-logo-img {
+    height: 75px;
   }
 
   .hero-visual-card {
