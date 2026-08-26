@@ -354,6 +354,98 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.05) rotate(2deg);
 }
 
+/* Control de Música en el Centro del Header */
+.header-music-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-music-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.95rem;
+  background: #111116;
+  border: 2.5px solid var(--accent-yellow);
+  border-radius: var(--radius-full);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #000000, 0 0 15px rgba(250, 204, 21, 0.3);
+  transition: var(--transition-bounce);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.header-music-pill:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 4px 4px 0px #000000, 0 0 25px rgba(250, 204, 21, 0.6);
+  border-color: #FFFFFF;
+}
+
+.header-music-pill.playing {
+  border-color: var(--primary-pink);
+  box-shadow: 3px 3px 0px #000000, 0 0 20px rgba(236, 72, 153, 0.55);
+}
+
+.music-pill-disc {
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.header-music-pill.playing .music-pill-disc {
+  animation: spinDisc 3.5s linear infinite;
+}
+
+.music-pill-waves {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 11px;
+}
+
+.music-pill-waves span {
+  width: 2.5px;
+  height: 3px;
+  background-color: var(--accent-yellow);
+  border-radius: 1px;
+  transition: height 0.2s ease;
+}
+
+.header-music-pill.playing .music-pill-waves span:nth-child(1) {
+  animation: eqMiniBounce 0.6s infinite alternate;
+  background-color: var(--accent-yellow);
+}
+
+.header-music-pill.playing .music-pill-waves span:nth-child(2) {
+  animation: eqMiniBounce 0.45s infinite alternate 0.15s;
+  background-color: var(--primary-pink);
+}
+
+.header-music-pill.playing .music-pill-waves span:nth-child(3) {
+  animation: eqMiniBounce 0.7s infinite alternate 0.3s;
+  background-color: var(--primary-purple);
+}
+
+.music-pill-action {
+  font-size: 0.68rem;
+  background: var(--primary-purple);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #FFFFFF;
+  margin-left: 2px;
+}
+
+@keyframes spinDisc {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* Enlaces de Navegación */
 .nav-links {
   display: flex;
@@ -1913,18 +2005,6 @@ select.form-control option {
   box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
   animation: waRadarPulse 2.4s infinite 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
-  border-radius: var(--radius-full);
-  color: #FFFFFF;
-  font-family: var(--font-heading);
-  font-size: 0.72rem;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 2px 2px 0px #000000;
-  z-index: 10;
-  animation: badgeBounce 3s ease-in-out infinite;
-}
 
 @keyframes waRadarPulse {
   0% {
@@ -2063,7 +2143,12 @@ select.form-control option {
 
   .brand-img-logo {
     height: 58px;
-    max-width: 200px;
+    max-width: 170px;
+  }
+
+  .header-music-pill {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.72rem;
   }
 
   .hero-brand-logo-img {
