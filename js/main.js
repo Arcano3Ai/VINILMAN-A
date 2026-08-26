@@ -105,33 +105,42 @@ document.addEventListener('DOMContentLoaded', () => {
     bgMusic.volume = 0.65;
     bgMusic.loop = true;
 
-    // Intentar reproducción automática
-    const startAudio = () => {
-      bgMusic.play().then(() => {
-        updateMusicUI(true);
-      }).catch(() => {
-        // Bloqueado por política del navegador; se activará con la primera interacción
-        updateMusicUI(false);
-      });
-    };
-
-    startAudio();
-
-    // Desbloqueo suave en la primera interacción si el navegador lo bloqueó inicialmente
-    const unlockAudioOnInteraction = () => {
-      if (!isMusicPlaying && bgMusic.paused) {
-        bgMusic.play().then(() => {
+    // Intentar reproducción automática inmediata
+    const tryPlayAudio = () => {
+      const playPromise = bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
           updateMusicUI(true);
-        }).catch(() => {});
+          cleanupUnlockListeners();
+        }).catch(() => {
+          // Bloqueado por política del navegador; esperando primer micro-evento
+          updateMusicUI(false);
+        });
       }
-      document.removeEventListener('click', unlockAudioOnInteraction);
-      document.removeEventListener('touchstart', unlockAudioOnInteraction);
-      document.removeEventListener('scroll', unlockAudioOnInteraction);
     };
 
-    document.addEventListener('click', unlockAudioOnInteraction, { once: true });
-    document.addEventListener('touchstart', unlockAudioOnInteraction, { once: true });
-    document.addEventListener('scroll', unlockAudioOnInteraction, { once: true });
+    tryPlayAudio();
+
+    // Desbloqueo ultra rápido ante cualquier primer micro-evento del usuario
+    const unlockEvents = ['click', 'pointerdown', 'mousedown', 'touchstart', 'scroll', 'wheel', 'keydown', 'mousemove'];
+    
+    const handleFirstInteraction = () => {
+      if (bgMusic.paused) {
+        tryPlayAudio();
+      }
+    };
+
+    function cleanupUnlockListeners() {
+      unlockEvents.forEach(evt => {
+        window.removeEventListener(evt, handleFirstInteraction);
+        document.removeEventListener(evt, handleFirstInteraction);
+      });
+    }
+
+    unlockEvents.forEach(evt => {
+      window.addEventListener(evt, handleFirstInteraction, { passive: true, once: true });
+      document.addEventListener(evt, handleFirstInteraction, { passive: true, once: true });
+    });
 
     // Control manual con el botón flotante
     if (musicToggleBtn) {
