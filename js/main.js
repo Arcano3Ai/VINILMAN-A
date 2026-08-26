@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     isAudioPlaying = playing;
     if (playing) {
       headerMusicBtn?.classList.add('playing');
-      if (musicPillText) musicPillText.textContent = `Reproduciendo (${loopCount + 1}/${MAX_LOOPS}) 🎵`;
+      if (musicPillText) musicPillText.textContent = `Soundtrack (${loopCount + 1}/${MAX_LOOPS})`;
       if (musicPillAction) musicPillAction.textContent = '⏸️';
     } else {
       headerMusicBtn?.classList.remove('playing');
-      if (musicPillText) musicPillText.textContent = 'Música Oficial ▶️';
+      if (musicPillText) musicPillText.textContent = 'Música Oficial';
       if (musicPillAction) musicPillAction.textContent = '▶️';
     }
   }
