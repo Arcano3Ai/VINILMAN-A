@@ -78,15 +78,36 @@
         <img src="assets/logos/logoprincipal.png" alt="VINILMANÍA - Tu idea. Tu estilo. Tu manía." class="brand-img-logo">
       </a>
 
-      <!-- Music Control al Centro del Header -->
+      <!-- Music Control al Centro del Header (Estilo Cyber-Vinyl Sticker) -->
       <div class="header-music-center">
-        <button type="button" class="header-music-pill" id="headerMusicBtn" aria-label="Control de Música Oficial">
-          <span class="music-pill-disc" id="musicPillDisc">💿</span>
-          <span class="music-pill-text" id="musicPillText">Música Oficial</span>
-          <span class="music-pill-waves" id="musicPillWaves">
-            <span></span><span></span><span></span>
-          </span>
-          <span class="music-pill-action" id="musicPillAction">▶️</span>
+        <button type="button" class="header-music-pill" id="headerMusicBtn" aria-label="Control de Música Oficial VINILMANÍA">
+          <!-- Mini Disco de Vinil con Holograma y Surcos -->
+          <div class="music-disc-wrap">
+            <div class="music-mini-vinyl" id="musicMiniVinyl">
+              <div class="vinyl-groove-inner"></div>
+              <div class="vinyl-center-dot"></div>
+            </div>
+          </div>
+
+          <!-- Información de la Pista & Contador -->
+          <div class="music-pill-info">
+            <span class="music-pill-kicker">SOUNDTRACK</span>
+            <span class="music-pill-title" id="musicPillText">Música Oficial</span>
+          </div>
+
+          <!-- Ecualizador de 4 Bandas Neón -->
+          <div class="music-pill-equalizer" id="musicPillWaves">
+            <span class="eq-bar eq-b1"></span>
+            <span class="eq-bar eq-b2"></span>
+            <span class="eq-bar eq-b3"></span>
+            <span class="eq-bar eq-b4"></span>
+          </div>
+
+          <!-- Botón de Acción Play / Pause Neón -->
+          <div class="music-pill-action-btn" id="musicPillActionWrap">
+            <span class="action-icon-play" id="actionIconPlay">▶</span>
+            <span class="action-icon-pause" id="actionIconPause" style="display:none;">❚❚</span>
+          </div>
         </button>
       </div>
 

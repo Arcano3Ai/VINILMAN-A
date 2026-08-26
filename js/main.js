@@ -71,11 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
     mainVinilVideo.play().catch(() => {});
   }
 
-  // --- 3. MOTOR DE AUDIO EN HEADER (3 LOOPS CON DESBLOQUEO AUTOMÁTICO) ---
+  // --- 3. MOTOR DE AUDIO EN HEADER (CYBER-VINYL CONTROLLER) ---
   const bgMusic = document.getElementById('bgMusic') || new Audio('assets/music/vinilmania_theme.mp3');
   const headerMusicBtn = document.getElementById('headerMusicBtn');
   const musicPillText = document.getElementById('musicPillText');
-  const musicPillAction = document.getElementById('musicPillAction');
+  const actionIconPlay = document.getElementById('actionIconPlay');
+  const actionIconPause = document.getElementById('actionIconPause');
 
   let loopCount = 0;
   const MAX_LOOPS = 3;
@@ -85,12 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
     isAudioPlaying = playing;
     if (playing) {
       headerMusicBtn?.classList.add('playing');
-      if (musicPillText) musicPillText.textContent = `Soundtrack (${loopCount + 1}/${MAX_LOOPS})`;
-      if (musicPillAction) musicPillAction.textContent = '⏸️';
+      if (musicPillText) musicPillText.textContent = `Loop ${loopCount + 1}/${MAX_LOOPS}`;
+      if (actionIconPlay) actionIconPlay.style.display = 'none';
+      if (actionIconPause) actionIconPause.style.display = 'inline-block';
     } else {
       headerMusicBtn?.classList.remove('playing');
       if (musicPillText) musicPillText.textContent = 'Música Oficial';
-      if (musicPillAction) musicPillAction.textContent = '▶️';
+      if (actionIconPlay) actionIconPlay.style.display = 'inline-block';
+      if (actionIconPause) actionIconPause.style.display = 'none';
     }
   }
 
