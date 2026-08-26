@@ -64,23 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 2. VIDEO SHOWCASE CONTROLS ---
+  // --- 2. VIDEO SHOWCASE (REPRODUCCIÓN AUTOMÁTICA) ---
   const mainVinilVideo = document.getElementById('mainVinilVideo');
-  const videoSoundToggleBtn = document.getElementById('videoSoundToggleBtn');
-  const soundIcon = document.getElementById('soundIcon');
-  const soundText = document.getElementById('soundText');
-
-  if (videoSoundToggleBtn && mainVinilVideo) {
-    videoSoundToggleBtn.addEventListener('click', () => {
-      mainVinilVideo.muted = !mainVinilVideo.muted;
-      if (mainVinilVideo.muted) {
-        if (soundIcon) soundIcon.textContent = '🔇';
-        if (soundText) soundText.textContent = 'Activar Audio';
-      } else {
-        if (soundIcon) soundIcon.textContent = '🔊';
-        if (soundText) soundText.textContent = 'Silenciar';
-      }
-    });
+  if (mainVinilVideo) {
+    mainVinilVideo.play().catch(() => {});
   }
 
   // --- 3. MOTOR DE AUDIO VINILMANÍA (3 LOOPS CON DESBLOQUEO MÓVIL GARANTIZADO) ---
