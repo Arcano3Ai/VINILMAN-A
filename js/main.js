@@ -64,9 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 2. VIDEO SHOWCASE (REPRODUCCIÓN AUTOMÁTICA) ---
+  // --- 2. VIDEO SHOWCASE (LOOP VISUAL 100% SILENCIADO) ---
   const mainVinilVideo = document.getElementById('mainVinilVideo');
   if (mainVinilVideo) {
+    mainVinilVideo.muted = true;
     mainVinilVideo.play().catch(() => {});
   }
 
