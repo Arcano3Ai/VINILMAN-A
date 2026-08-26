@@ -1782,76 +1782,166 @@ select.form-control option {
   color: #64748B;
 }
 
-/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
+/* --- BOTÓN FLOTANTE DE WHATSAPP (ULTRA ATRACTIVO) --- */
 .whatsapp-floating {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 30px;
+  right: 30px;
   z-index: 1500;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
-.whatsapp-tooltip {
+/* Tooltip Interactivo tipo Tarjeta */
+.whatsapp-tooltip-card {
   background: #FFFFFF;
-  border: var(--border-sticker);
-  border-radius: var(--radius-md);
-  padding: 0.55rem 0.95rem;
-  box-shadow: var(--shadow-sticker);
+  border: 3px solid #111111;
+  border-radius: var(--radius-lg);
+  padding: 0.85rem 1.15rem;
+  box-shadow: var(--shadow-sticker), 0 10px 25px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  color: var(--text-dark);
+  cursor: pointer;
+  transform-origin: right center;
+  transition: var(--transition-bounce);
+  animation: floatAnim 4s ease-in-out infinite;
+}
+
+.whatsapp-tooltip-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 6px 6px 0px #25D366;
+  border-color: #111111;
+}
+
+.wa-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.wa-online-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #25D366;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #25D366;
+  animation: pulseDot 2s infinite;
+}
+
+.wa-online-text {
   font-family: var(--font-heading);
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  color: #111111;
-  white-space: nowrap;
-  animation: floatAnim 3s ease-in-out infinite;
+  color: #16A34A;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.whatsapp-tooltip span {
-  display: block;
+.wa-lightning {
+  font-size: 0.75rem;
+}
+
+.wa-tooltip-title {
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  line-height: 1.2;
+}
+
+.wa-tooltip-subtitle {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  color: #25D366;
+  color: var(--text-muted);
 }
 
+/* Botón Circular Pulsante */
 .whatsapp-btn-circle {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 62px;
-  height: 62px;
-  background: #25D366;
-  border: var(--border-sticker);
+  width: 68px;
+  height: 68px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border: 3.5px solid #111111;
   border-radius: 50%;
   color: #FFFFFF;
-  box-shadow: 4px 4px 0px #000000, 0 0 20px rgba(37, 211, 102, 0.4);
+  box-shadow: 4px 5px 0px #000000, 0 8px 25px rgba(37, 211, 102, 0.45);
   transition: var(--transition-bounce);
+  flex-shrink: 0;
 }
 
 .whatsapp-btn-circle:hover {
-  transform: scale(1.1) rotate(6deg);
-  background: #22BF5B;
-  box-shadow: 6px 6px 0px #000000, 0 0 30px rgba(37, 211, 102, 0.6);
+  transform: scale(1.12) rotate(6deg);
+  box-shadow: 6px 7px 0px #000000, 0 12px 35px rgba(37, 211, 102, 0.7);
+}
+
+/* Anillos Pulsantes de Ondas (Radar Pulse) */
+.wa-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  pointer-events: none;
+  animation: waRadarPulse 2.4s infinite cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.wa-pulse-ring-2 {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.35);
+  pointer-events: none;
+  animation: waRadarPulse 2.4s infinite 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .whatsapp-badge {
   position: absolute;
   top: -4px;
   right: -4px;
-  width: 22px;
-  height: 22px;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 5px;
   background: var(--primary-pink);
   border: 2px solid #111111;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   color: #FFFFFF;
   font-family: var(--font-heading);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 2px 2px 0px #000000;
+  z-index: 10;
+  animation: badgeBounce 3s ease-in-out infinite;
+}
+
+@keyframes waRadarPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+@keyframes badgeBounce {
+  0%, 100% { transform: scale(1); }
+  10%, 30% { transform: scale(1.2) rotate(-6deg); }
+  20%, 40% { transform: scale(1.2) rotate(6deg); }
+  50% { transform: scale(1); }
 }
 
 /* --- ANIMACIONES --- */
