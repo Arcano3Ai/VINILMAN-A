@@ -150,6 +150,13 @@
               <span class="sparkle-icon">✨</span>
               <span>PERSONALIZACIÓN CREATIVA</span>
             </div>
+            <button type="button" class="hero-audio-pill" id="heroAudioPill" aria-label="Control de Soundtrack">
+              <span class="audio-pill-icon" id="audioPillIcon">🎵</span>
+              <span class="audio-pill-text" id="audioPillText">Música Oficial</span>
+              <span class="audio-pill-waves" id="audioPillWaves">
+                <span></span><span></span><span></span>
+              </span>
+            </button>
           </div>
 
           <h1 class="hero-title">
@@ -1272,7 +1279,7 @@
   </div>
 
   <!-- Audio de Fondo Oficial (3 Loops Automáticos al Ingresar) -->
-  <audio id="bgMusic" autoplay preload="auto" playsinline webkit-playsinline style="display:none;">
+  <audio id="bgMusic" autoplay preload="auto" playsinline webkit-playsinline style="position:fixed; bottom:-100px; left:-100px; width:1px; height:1px; opacity:0.01; pointer-events:none;">
     <source src="assets/music/vinilmania_theme.mp3" type="audio/mpeg">
     <source src="assets/music/vinilmania_theme.wav" type="audio/wav">
     <source src="assets/audio/vinilmania_theme.mp3" type="audio/mpeg">

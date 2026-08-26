@@ -506,6 +506,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-badge-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin-bottom: 1.4rem;
 }
 
@@ -520,9 +524,79 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
   color: var(--accent-yellow);
-  box-shadow: 0 0 15px rgba(250, 204, 21, 0.2);
+  letter-spacing: 0.05em;
+}
+
+/* Pill Interactiva de Soundtrack Oficial */
+.hero-audio-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.15rem;
+  background: #111116;
+  border: 2.5px solid var(--accent-yellow);
+  border-radius: var(--radius-full);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #000000, 0 0 15px rgba(250, 204, 21, 0.3);
+  transition: var(--transition-bounce);
+  user-select: none;
+}
+
+.hero-audio-pill:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 4px 4px 0px #000000, 0 0 25px rgba(250, 204, 21, 0.6);
+  border-color: #FFFFFF;
+}
+
+.hero-audio-pill.playing {
+  border-color: var(--primary-pink);
+  box-shadow: 3px 3px 0px #000000, 0 0 20px rgba(236, 72, 153, 0.5);
+  animation: pulseAudioPill 2s infinite ease-in-out;
+}
+
+.audio-pill-waves {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 11px;
+}
+
+.audio-pill-waves span {
+  width: 2.5px;
+  height: 3px;
+  background-color: var(--accent-yellow);
+  border-radius: 1px;
+  transition: height 0.2s ease;
+}
+
+.hero-audio-pill.playing .audio-pill-waves span:nth-child(1) {
+  animation: eqMiniBounce 0.6s infinite alternate;
+  background-color: var(--accent-yellow);
+}
+
+.hero-audio-pill.playing .audio-pill-waves span:nth-child(2) {
+  animation: eqMiniBounce 0.45s infinite alternate 0.15s;
+  background-color: var(--primary-pink);
+}
+
+.hero-audio-pill.playing .audio-pill-waves span:nth-child(3) {
+  animation: eqMiniBounce 0.7s infinite alternate 0.3s;
+  background-color: var(--primary-purple);
+}
+
+@keyframes eqMiniBounce {
+  0% { height: 3px; }
+  100% { height: 12px; }
+}
+
+@keyframes pulseAudioPill {
+  0%, 100% { box-shadow: 3px 3px 0px #000000, 0 0 15px rgba(236, 72, 153, 0.4); }
+  50% { box-shadow: 4px 4px 0px #000000, 0 0 25px rgba(236, 72, 153, 0.75); }
 }
 
 .hero-badge .sparkle-icon {

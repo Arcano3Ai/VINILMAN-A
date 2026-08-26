@@ -83,84 +83,120 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. MÚSICA DE FONDO (3 LOOPS GARANTIZADOS AL INGRESAR) ---
+  // --- 3. MOTOR DE AUDIO VINILMANÍA (3 LOOPS CON DESBLOQUEO MÓVIL GARANTIZADO) ---
   const bgMusic = document.getElementById('bgMusic') || new Audio('assets/music/vinilmania_theme.mp3');
+  const heroAudioPill = document.getElementById('heroAudioPill');
+  const audioPillText = document.getElementById('audioPillText');
+  const audioPillIcon = document.getElementById('audioPillIcon');
+
   let loopCount = 0;
   const MAX_LOOPS = 3;
-  let isAudioStarted = false;
+  let isAudioPlaying = false;
+
+  function updateAudioPillUI(playing) {
+    isAudioPlaying = playing;
+    if (playing) {
+      heroAudioPill?.classList.add('playing');
+      if (audioPillText) audioPillText.textContent = `Reproduciendo (${loopCount + 1}/${MAX_LOOPS}) 🎵`;
+      if (audioPillIcon) audioPillIcon.textContent = '🔊';
+    } else {
+      heroAudioPill?.classList.remove('playing');
+      if (audioPillText) audioPillText.textContent = 'Música Oficial ▶️';
+      if (audioPillIcon) audioPillIcon.textContent = '🎵';
+    }
+  }
 
   if (bgMusic) {
     bgMusic.volume = 0.85;
+    bgMusic.loop = false;
 
-    // Conteo y repetición exacta de 3 loops
+    // Al terminar cada vuelta, repetir exactamente 3 loops
     bgMusic.addEventListener('ended', () => {
       loopCount++;
       if (loopCount < MAX_LOOPS) {
         bgMusic.currentTime = 0;
-        bgMusic.play().catch(() => {});
+        bgMusic.play().then(() => updateAudioPillUI(true)).catch(() => {});
       } else {
         bgMusic.pause();
+        updateAudioPillUI(false);
       }
     });
 
-    const triggerPlay = () => {
+    // Rutina de inicio / desbloqueo directo
+    function triggerAudioStart() {
       if (loopCount >= MAX_LOOPS) return;
+
+      // Despertar AudioContext de WebKit/Blink
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          const tempCtx = new AudioContextClass();
+          if (tempCtx.state === 'suspended') {
+            tempCtx.resume();
+          }
+        }
+      } catch (e) {}
+
       bgMusic.muted = false;
       const playPromise = bgMusic.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            isAudioStarted = true;
-            removeGestureListeners();
+            updateAudioPillUI(true);
+            removeGlobalGestureListeners();
           })
           .catch(() => {
-            // El navegador bloquea audio con sonido antes del primer gesto.
-            // Precargamos en modo muted para tener el pipeline listo.
-            bgMusic.muted = true;
-            bgMusic.play().catch(() => {});
+            // El navegador bloqueó antes del primer gesto
+            updateAudioPillUI(false);
           });
       }
-    };
+    }
 
-    // 1. Ejecutar de inmediato al cargar
-    triggerPlay();
+    // 1. Intentar arranque inmediato al cargar
+    triggerAudioStart();
 
-    // 2. Desbloquear sonido en el primer micro-gesto del usuario
-    const onUserGesture = () => {
-      if (!isAudioStarted || bgMusic.paused || bgMusic.muted) {
-        bgMusic.muted = false;
-        if (bgMusic.currentTime > 5 && loopCount === 0) {
-          bgMusic.currentTime = 0;
-        }
-        triggerPlay();
+    // 2. Desbloqueo ultra-rápido en el primer toque de pantalla, clic o desplazamiento
+    const onUserFirstAction = () => {
+      if (!isAudioPlaying && loopCount < MAX_LOOPS) {
+        triggerAudioStart();
       }
     };
 
-    const gestureEvents = [
-      'click',
+    const actionEvents = [
       'touchstart',
       'touchend',
       'pointerdown',
       'pointerup',
       'mousedown',
-      'mouseup',
-      'scroll',
-      'wheel',
-      'keydown',
-      'mousemove'
+      'click',
+      'scroll'
     ];
 
-    function removeGestureListeners() {
-      gestureEvents.forEach(evt => {
-        window.removeEventListener(evt, onUserGesture, true);
-        document.removeEventListener(evt, onUserGesture, true);
+    function removeGlobalGestureListeners() {
+      actionEvents.forEach(evt => {
+        window.removeEventListener(evt, onUserFirstAction, true);
+        document.removeEventListener(evt, onUserFirstAction, true);
       });
     }
 
-    gestureEvents.forEach(evt => {
-      window.addEventListener(evt, onUserGesture, { capture: true, passive: true });
-      document.addEventListener(evt, onUserGesture, { capture: true, passive: true });
+    actionEvents.forEach(evt => {
+      window.addEventListener(evt, onUserFirstAction, { capture: true, passive: true });
+      document.addEventListener(evt, onUserFirstAction, { capture: true, passive: true });
     });
+
+    // 3. Control directo en la píldora del Hero
+    if (heroAudioPill) {
+      heroAudioPill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (bgMusic.paused) {
+          if (loopCount >= MAX_LOOPS) loopCount = 0;
+          triggerAudioStart();
+        } else {
+          bgMusic.pause();
+          updateAudioPillUI(false);
+        }
+      });
+    }
   }
 
   // Asegurar siempre posición en el tope al finalizar carga
