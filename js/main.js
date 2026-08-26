@@ -1,10 +1,14 @@
-/**
- * VINILMANÍA - JavaScript Engine
- * Manejo interactivo, generador dinámico de WhatsApp, customizer, galería lightbox, FAQ y validaciones.
- */
+// Forzar inicio siempre en el tope superior (Hero) al cargar en móvil y escritorio
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
+
+  // Asegurar posición inicial en el tope de la pantalla
+  window.scrollTo(0, 0);
 
   // --- CONFIGURACIÓN PRINCIPAL ---
   const CONFIG = {
@@ -143,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'mousedown',
       'click',
       'scroll',
+      'wheel',
       'keydown'
     ];
 
@@ -171,6 +176,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+
+  // Asegurar siempre posición en el tope al finalizar carga
+  window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+  });
 
   // --- 4. SERVICIOS: BOTONES DE COTIZACIÓN DINÁMICOS ---
   const serviceQuoteBtns = document.querySelectorAll('.service-quote-btn');
