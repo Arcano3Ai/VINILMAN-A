@@ -1271,39 +1271,13 @@
     </a>
   </div>
 
-  <!-- ==========================================================================
-       REPRODUCTOR DE MÚSICA OFICIAL (VINILMANÍA SOUNDTRACK)
-       ========================================================================== -->
-  <div class="music-floating-widget" id="musicWidget">
-    <button type="button" class="music-toggle-btn" id="musicToggleBtn" aria-label="Control de Música">
-      <div class="music-disc-wrap">
-        <div class="music-vinyl-disc" id="musicVinylDisc">
-          <div class="music-vinyl-grooves"></div>
-          <div class="music-vinyl-center"></div>
-        </div>
-        <div class="music-equalizer" id="musicEqualizer">
-          <span class="eq-bar bar-1"></span>
-          <span class="eq-bar bar-2"></span>
-          <span class="eq-bar bar-3"></span>
-          <span class="eq-bar bar-4"></span>
-        </div>
-      </div>
-      <div class="music-info-text">
-        <span class="music-label">VINILMANÍA SOUND</span>
-        <span class="music-status" id="musicStatusText">Reproduciendo 🎵</span>
-      </div>
-      <div class="music-action-icon" id="musicActionIcon">
-        ⏸️
-      </div>
-    </button>
-    <audio id="bgMusic" autoplay loop preload="auto" playsinline webkit-playsinline>
-      <source src="assets/music/vinilmania_theme.mp3" type="audio/mpeg">
-      <source src="assets/music/vinilmania_theme.wav" type="audio/wav">
-      <source src="assets/audio/vinilmania_theme.mp3" type="audio/mpeg">
-      <source src="assets/audio/vinilmania_theme.wav" type="audio/wav">
-      Tu navegador no soporta el elemento de audio.
-    </audio>
-  </div>
+  <!-- Audio de Fondo Oficial (3 Loops Automáticos al Ingresar) -->
+  <audio id="bgMusic" autoplay preload="auto" playsinline webkit-playsinline style="display:none;">
+    <source src="assets/music/vinilmania_theme.mp3" type="audio/mpeg">
+    <source src="assets/music/vinilmania_theme.wav" type="audio/wav">
+    <source src="assets/audio/vinilmania_theme.mp3" type="audio/mpeg">
+    <source src="assets/audio/vinilmania_theme.wav" type="audio/wav">
+  </audio>
 
   <!-- Scripts -->
   <script src="js/main.js" defer></script>

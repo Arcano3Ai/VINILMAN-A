@@ -83,59 +83,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. REPRODUCTOR DE MÚSICA OFICIAL (AUTOPLAY MOBILE-OPTIMIZED) ---
+  // --- 3. MÚSICA DE FONDO (REPRODUCCIÓN AUTOMÁTICA EN 3 LOOPS AL INGRESAR) ---
   const bgMusic = document.getElementById('bgMusic');
-  const musicToggleBtn = document.getElementById('musicToggleBtn');
-  const musicVinylDisc = document.getElementById('musicVinylDisc');
-  const musicStatusText = document.getElementById('musicStatusText');
-  const musicActionIcon = document.getElementById('musicActionIcon');
-
-  let isMusicPlaying = false;
-
-  function updateMusicUI(playing) {
-    isMusicPlaying = playing;
-    if (playing) {
-      musicVinylDisc?.classList.add('playing');
-      if (musicStatusText) musicStatusText.textContent = 'Reproduciendo 🎵';
-      if (musicActionIcon) musicActionIcon.textContent = '⏸️';
-      musicToggleBtn?.classList.remove('pulse-attention');
-    } else {
-      musicVinylDisc?.classList.remove('playing');
-      if (musicStatusText) musicStatusText.textContent = 'Activar Música ▶️';
-      if (musicActionIcon) musicActionIcon.textContent = '▶️';
-      musicToggleBtn?.classList.add('pulse-attention');
-    }
-  }
 
   if (bgMusic) {
     bgMusic.volume = 0.7;
-    bgMusic.loop = true;
+    bgMusic.loop = false; // Manejado por contador para cumplir exactamente 3 loops
+    let loopCount = 0;
+    const MAX_LOOPS = 3;
 
-    // Intentar reproducción directa
-    const executePlay = () => {
+    // Al terminar cada vuelta, repetir hasta completar 3 loops
+    bgMusic.addEventListener('ended', () => {
+      loopCount++;
+      if (loopCount < MAX_LOOPS) {
+        bgMusic.currentTime = 0;
+        bgMusic.play().catch(() => {});
+      } else {
+        bgMusic.pause();
+      }
+    });
+
+    // Intentar reproducción automática inmediata al ingresar
+    const startIntroAudio = () => {
       bgMusic.muted = false;
       const playPromise = bgMusic.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            updateMusicUI(true);
-            removeMobileUnlockListeners();
+            removeAudioUnlockListeners();
           })
           .catch(() => {
-            // Esperando primer toque en móvil
-            updateMusicUI(false);
+            // Se activará con el primer toque o scroll del usuario
           });
       }
     };
 
-    // Intentar al cargar
-    executePlay();
+    startIntroAudio();
 
-    // Desbloqueo garantizado para móviles (iOS Safari / Android Chrome)
-    // Se ejecuta en el primer toque de pantalla o scroll
-    const onMobileFirstInteraction = () => {
-      if (bgMusic.paused) {
-        executePlay();
+    // Desbloqueo garantizado en el primer toque, scroll o tecla en móvil y escritorio
+    const onFirstUserGesture = () => {
+      if (bgMusic.paused && loopCount < MAX_LOOPS) {
+        startIntroAudio();
       }
     };
 
@@ -151,30 +139,17 @@ document.addEventListener('DOMContentLoaded', () => {
       'keydown'
     ];
 
-    function removeMobileUnlockListeners() {
+    function removeAudioUnlockListeners() {
       unlockEvents.forEach(evt => {
-        window.removeEventListener(evt, onMobileFirstInteraction, true);
-        document.removeEventListener(evt, onMobileFirstInteraction, true);
+        window.removeEventListener(evt, onFirstUserGesture, true);
+        document.removeEventListener(evt, onFirstUserGesture, true);
       });
     }
 
     unlockEvents.forEach(evt => {
-      window.addEventListener(evt, onMobileFirstInteraction, { passive: true, capture: true });
-      document.addEventListener(evt, onMobileFirstInteraction, { passive: true, capture: true });
+      window.addEventListener(evt, onFirstUserGesture, { passive: true, capture: true });
+      document.addEventListener(evt, onFirstUserGesture, { passive: true, capture: true });
     });
-
-    // Control manual por el botón
-    if (musicToggleBtn) {
-      musicToggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (bgMusic.paused) {
-          executePlay();
-        } else {
-          bgMusic.pause();
-          updateMusicUI(false);
-        }
-      });
-    }
   }
 
   // Asegurar siempre posición en el tope al finalizar carga
