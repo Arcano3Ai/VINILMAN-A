@@ -1782,7 +1782,7 @@ select.form-control option {
   color: #64748B;
 }
 
-/* --- BOTÓN FLOTANTE DE WHATSAPP (ULTRA ATRACTIVO) --- */
+/* --- BOTÓN FLOTANTE DE WHATSAPP (ESTILO STICKER COOL) --- */
 .whatsapp-floating {
   position: fixed;
   bottom: 30px;
@@ -1790,75 +1790,9 @@ select.form-control option {
   z-index: 1500;
   display: flex;
   align-items: center;
-  gap: 1rem;
 }
 
-/* Tooltip Interactivo tipo Tarjeta */
-.whatsapp-tooltip-card {
-  background: #FFFFFF;
-  border: 3px solid #111111;
-  border-radius: var(--radius-lg);
-  padding: 0.85rem 1.15rem;
-  box-shadow: var(--shadow-sticker), 0 10px 25px rgba(0, 0, 0, 0.12);
-  text-decoration: none;
-  color: var(--text-dark);
-  cursor: pointer;
-  transform-origin: right center;
-  transition: var(--transition-bounce);
-  animation: floatAnim 4s ease-in-out infinite;
-}
-
-.whatsapp-tooltip-card:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 6px 6px 0px #25D366;
-  border-color: #111111;
-}
-
-.wa-tooltip-header {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.25rem;
-}
-
-.wa-online-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #25D366;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #25D366;
-  animation: pulseDot 2s infinite;
-}
-
-.wa-online-text {
-  font-family: var(--font-heading);
-  font-size: 0.68rem;
-  font-weight: 800;
-  color: #16A34A;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.wa-lightning {
-  font-size: 0.75rem;
-}
-
-.wa-tooltip-title {
-  font-family: var(--font-heading);
-  font-size: 0.86rem;
-  font-weight: 800;
-  color: var(--dark-black);
-  line-height: 1.2;
-}
-
-.wa-tooltip-subtitle {
-  font-family: var(--font-body);
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-/* Botón Circular Pulsante */
+/* Botón Circular Sticker */
 .whatsapp-btn-circle {
   position: relative;
   display: flex;
@@ -1866,24 +1800,29 @@ select.form-control option {
   justify-content: center;
   width: 68px;
   height: 68px;
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  border: 3.5px solid #111111;
-  border-radius: 50%;
+  background: transparent;
+  border: none;
   color: #FFFFFF;
-  box-shadow: 4px 5px 0px #000000, 0 8px 25px rgba(37, 211, 102, 0.45);
+  filter: drop-shadow(4px 5px 0px #000000) drop-shadow(0 0 16px rgba(37, 211, 102, 0.5));
   transition: var(--transition-bounce);
-  flex-shrink: 0;
+  cursor: pointer;
+  animation: floatAnim 3.5s ease-in-out infinite;
 }
 
 .whatsapp-btn-circle:hover {
-  transform: scale(1.12) rotate(6deg);
-  box-shadow: 6px 7px 0px #000000, 0 12px 35px rgba(37, 211, 102, 0.7);
+  transform: scale(1.18) rotate(8deg);
+  filter: drop-shadow(6px 8px 0px #000000) drop-shadow(0 0 28px rgba(37, 211, 102, 0.85));
+}
+
+.whatsapp-btn-circle svg {
+  display: block;
+  transition: var(--transition-bounce);
 }
 
 /* Anillos Pulsantes de Ondas (Radar Pulse) */
 .wa-pulse-ring {
   position: absolute;
-  inset: -6px;
+  inset: 0px;
   border-radius: 50%;
   border: 2px solid rgba(37, 211, 102, 0.6);
   pointer-events: none;
@@ -1892,22 +1831,12 @@ select.form-control option {
 
 .wa-pulse-ring-2 {
   position: absolute;
-  inset: -12px;
+  inset: -6px;
   border-radius: 50%;
   border: 2px solid rgba(37, 211, 102, 0.35);
   pointer-events: none;
   animation: waRadarPulse 2.4s infinite 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
-.whatsapp-badge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  min-width: 24px;
-  height: 24px;
-  padding: 0 5px;
-  background: var(--primary-pink);
-  border: 2px solid #111111;
   border-radius: var(--radius-full);
   color: #FFFFFF;
   font-family: var(--font-heading);
